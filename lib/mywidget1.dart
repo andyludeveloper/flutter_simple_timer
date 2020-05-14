@@ -1,36 +1,21 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:fluttertimerapp2/page2.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertimerapp2/mywidget2.dart';
 import 'package:provider/provider.dart';
 import 'counter.dart';
 
-class Page1 extends StatefulWidget {
+class MyWidget1 extends StatefulWidget {
   @override
-  _Page1State createState() => _Page1State();
+  _MyWidget1State createState() => _MyWidget1State();
 }
 
-class _Page1State extends State<Page1> {
+class _MyWidget1State extends State<MyWidget1> {
+  var title = 'MyWidget1';
   var timer;
 
   @override
   Widget build(BuildContext context) {
     var counter = Provider.of<Counter>(context);
-    counter.addListener((){
-      debugPrint('${counter.count}');
-      if(counter.count == 10.0){
-        Fluttertoast.showToast(
-            msg: "This is Center Short Toast",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-        timer.cancel();
-      }
-    });
     return Scaffold(
       body: Container(
         color: Colors.greenAccent,
@@ -38,18 +23,8 @@ class _Page1State extends State<Page1> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Center(
-                child: Text(
-                  'Page1',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-              Center(
-                child: Text(
-                  'Counter: ${counter.count}',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
+              Center(child: Text(title, style: TextStyle(fontSize: 40.0))),
+              Center(child: Text('Counter: ${counter.count}', style: TextStyle(fontSize: 40.0)),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -73,7 +48,7 @@ class _Page1State extends State<Page1> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => Page2()),
+                        MaterialPageRoute(builder: (_) => MyWidget2()),
                       );
                     },
                   ),

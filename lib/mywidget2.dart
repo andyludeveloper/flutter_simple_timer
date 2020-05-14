@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertimerapp2/page3.dart';
+import 'package:fluttertimerapp2/mywidget3.dart';
 import 'package:provider/provider.dart';
 import 'counter.dart';
 
-class Page2 extends StatefulWidget {
+class MyWidget2 extends StatefulWidget {
   @override
-  _Page2State createState() => _Page2State();
+  _MyWidget2State createState() => _MyWidget2State();
 }
 
-class _Page2State extends State<Page2> {
-  
+class _MyWidget2State extends State<MyWidget2> {
+  var title = 'MyWidget2';
+
   @override
   Widget build(BuildContext context) {
-  var counter = Provider.of<Counter>(context);
     return Scaffold(
       body: Container(
         color: Colors.lightBlue,
@@ -20,13 +20,8 @@ class _Page2State extends State<Page2> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Center(child: Text('Page2', style: TextStyle(fontSize: 40.0, color: Colors.yellowAccent),)),
-            Center(
-              child: Text(
-                'Counter: ${counter.count}',
-                style: TextStyle(fontSize: 40.0),
-              ),
-            ),
+            Center(child: Text(title, style: TextStyle(fontSize: 40.0, color: Colors.yellowAccent),)),
+            Center(child: Text('Counter: ${Provider.of<Counter>(context).count}', style: TextStyle(fontSize: 40.0),)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +38,7 @@ class _Page2State extends State<Page2> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => Page3()),
+                      MaterialPageRoute(builder: (_) => MyWidget3()),
                     );
                   },
                 ),
